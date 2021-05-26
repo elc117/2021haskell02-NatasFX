@@ -16,20 +16,17 @@ itemize = map (\s -> "<li>"++ s ++"</li>")
 bigCircles :: Float -> [Float] -> [Float]
 bigCircles area = filter (\r -> r^2*pi > area)
 
---tempFebre1 :: (String,Float) -> Bool 
---tempFebre1 s = ((last s) > 37.8)
-
 quarentena :: [(String,Float)] -> [(String,Float)]
 quarentena = filter (tempFebre . snd)
 
 idadesEm :: [Int] -> Int -> [Int]
 idadesEm l a = map (a+) l
 
-isUpper :: Char -> Bool
-isUpper s = elem s ['A'..'Z']
+upperOrNot :: String -> String
+upperOrNot s = if 'A'==head s then "Super " else ""
 
 changeNames :: [String] -> [String]
-changeNames s = (map ("Super "++)) (filter (isUpper . head) s)
+changeNames = map (\r -> upperOrNot r ++ r)
 
 onlyShorts :: [String] -> [String]
 onlyShorts = filter (\s -> length s < 5)
